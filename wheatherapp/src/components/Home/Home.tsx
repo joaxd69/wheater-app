@@ -29,7 +29,7 @@ export default function Home (){
         navigator.geolocation.getCurrentPosition((position)=>{
           const lat = position.coords.latitude
           const long = position.coords.longitude
-          fetch(`http://api.weatherapi.com/v1/current.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
+          fetch(`https://api.weatherapi.com/v1/current.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
          .then(response=>response.json())
          .then(data=>{
            data.error?setError(data.error.message):setError('')
@@ -43,7 +43,7 @@ export default function Home (){
       actuallocation()
      },[])
      const onclick =()=>{
-     city.length?fetch(`http://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${city}&days=5&aqi=no&alerts=no`)
+     city.length?fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${city}&days=5&aqi=no&alerts=no`)
          .then(response=>response.json())
          .then(data=>{
           console.log(data)
@@ -57,7 +57,7 @@ export default function Home (){
      }
   
     const onMapclick=(coords:string)=>{
-     fetch(`http://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${coords}&days=5&aqi=no&alerts=no`)
+     fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${coords}&days=5&aqi=no&alerts=no`)
       .then(response=>response.json())
       .then(data=>{
        console.log(data)
