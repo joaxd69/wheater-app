@@ -1,0 +1,17 @@
+.Container{
+    border: solid 1px black;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.firstSection{
+    border: solid 1px red;
+    width: 40%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.firstSection img{
+    width: 100px;
+    height: 100px;
+}
