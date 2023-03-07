@@ -1,0 +1,17 @@
+.FirstSection{
+    background-color: aqua;
+    display: flex;
+}
+.MapContainer{
+    background-color: rgb(19, 20, 20);
+    width: 40%;    
+}
+.CardInfo{
+    width: 60%;
+}
+.ForecastContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}

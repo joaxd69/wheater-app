@@ -1,5 +1,6 @@
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import {useState,useEffect} from 'react'
+import style from './Map.module.css'
 
 interface props{
     onMapclick:Function
@@ -26,8 +27,8 @@ export default function Map ({onMapclick,center}:props){
     const [map, setMap] = useState<google.maps.Map | null>(null);
     
     const containerStyle = {
-        width: '100%',
         height: '400px',
+        margin: '0 auto'
       };
       const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
 
@@ -49,8 +50,8 @@ export default function Map ({onMapclick,center}:props){
 
   
  return(
-    <div>
-    <GoogleMap mapContainerStyle={containerStyle} 
+    <div className={style.MapContainer}>
+    <GoogleMap  mapContainerStyle={containerStyle} 
     center={center} zoom={12} onClick={handleMapClick}
     options={options} onLoad={(map)=>setMap(map)}>  
     </GoogleMap>

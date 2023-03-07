@@ -1,6 +1,20 @@
 .Nav{
-    border-bottom: 1px solid;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 1px;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   background-color: black;
+}
+.Nav h1{
+    font-weight: lighter;
+    font-size: 35px;
+    letter-spacing: 2px;
+    color: white;
+}
+.Nav button {
+    font-size: 30px;
+    height: fit-content;
+    padding: 6px;
+    background-color: gold;
+    color: rgb(0, 0, 0);
+
 }
