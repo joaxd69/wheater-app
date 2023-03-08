@@ -1,5 +1,5 @@
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import style from './Map.module.css'
 
 interface props{
@@ -12,17 +12,6 @@ export default function Map ({onMapclick,center}:props){
         id: 'google-map-script',
         googleMapsApiKey:'AIzaSyBxRKT9oBJQNJ_ibqWi_Cwt97Z_WVLGkmg'
     })/// configuramos cuando es cargado el mapa
-    const [actuallocation,setActualLocation]=useState({lat:0,lng:0})///ubicacion actual
-    useEffect(()=>{
-        const actuallocation=()=>{
-            navigator.geolocation.getCurrentPosition((position)=>{
-              const lat = position.coords.latitude
-              const long = position.coords.longitude
-              setActualLocation({lat,lng:long})
-              })
-            }
-            actuallocation()
-    },[])///antes de que se monte el componente , en el mapa establecemos la
 
     const [map, setMap] = useState<google.maps.Map | null>(null);
     

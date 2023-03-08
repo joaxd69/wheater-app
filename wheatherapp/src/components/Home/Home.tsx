@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Cardinfo from "../Cardinfo/Cardinfo"
+import ForeCastInfo from "../ForeCastInfo/ForeCastInfo"
 import Map from "../Map/Map"
 import style from './Home.module.css'
 interface infoapi{
@@ -19,11 +20,14 @@ interface center {
   lat:number,
   lng:number
 }
+
+
 export default function Home (){
  
   
      const [city,setCity]=useState('')
      const [infocity,setInfoCity]=useState<infoapi>({})
+     const [forecast,setForeCast]=useState([])
      const [error,setError]=useState('')
      const [weatherinfo,setWeatherInfo]=useState<weather>({})
      const [centermap,setCenterMap]=useState <center>({lat:0,lng:0})
@@ -39,6 +43,8 @@ export default function Home (){
            data.error?setError(data.error.message):setError('')
            setInfoCity(data.location);
            setWeatherInfo(data.current)
+           setForeCast(data.forecast.forecastday)
+           console.log(data.forecast.forecastday ,'48')
            setCenterMap({lat,lng:long})
          })
          .catch(error=>console.log(error))
@@ -53,6 +59,7 @@ export default function Home (){
           console.log(data)
            data.error?setError(data.error.message):setError('')
            setInfoCity(data.location);
+           setForeCast(data.forecast.forecastday)
            setWeatherInfo(data.current)
            setCenterMap({lat:data.location.lat,lng:data.location.lon})
          })
@@ -66,11 +73,13 @@ export default function Home (){
       .then(data=>{
        console.log(data)
         data.error?setError(data.error.message):setError('')
+        setForeCast(data.forecast.forecastday)
         setInfoCity(data.location);
         setWeatherInfo(data.current)
       })
       .catch(error=>console.log(error))
     }
+    console.log(forecast)
     return(
     <div>
         <input value={city} onChange={(e)=>{setCity(e.target.value)}} />
@@ -97,16 +106,12 @@ export default function Home (){
          </div>
     
        <div className={style.ForecastContainer}>
-           <h1>Forest </h1>
+           <h1>Forecast </h1>
+
            {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} weatherinfo={weatherinfo}/>
+         <ForeCastInfo forecast={forecast}/>
        }
-            {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} weatherinfo={weatherinfo}/>
-       }
-         {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} weatherinfo={weatherinfo}/>
-       }
+            
         </div> 
 
 

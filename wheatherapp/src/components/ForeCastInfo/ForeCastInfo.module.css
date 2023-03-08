@@ -1,0 +1,22 @@
+.Container{
+width: 60%;
+display: flex;
+justify-content: space-around;
+}
+.Container section{
+     background-color:rgb(135, 163, 187);
+     border: 1px solid ; 
+     width: 30%;
+     height: 250px;
+    display:flex;
+    flex-flow: column;
+    justify-content: space-around;
+     
+}
+.Container section h1,h2{
+    margin: 0 auto;
+}
+.Container section img{
+    margin: 0 auto;
+    height: 100px;
+}
