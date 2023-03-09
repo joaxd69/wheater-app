@@ -1,22 +1,42 @@
-.Container{
-width: 60%;
+.principalContainer{
+    display: flex;
+    flex-direction: column;
+}
+.firstContainer{
 display: flex;
 justify-content: space-around;
+
 }
-.Container section{
+.firstContainer section{
      background-color:rgb(135, 163, 187);
      border: 1px solid ; 
-     width: 30%;
      height: 250px;
     display:flex;
     flex-flow: column;
-    justify-content: space-around;
-     
+    justify-content: space-around;    
 }
-.Container section h1,h2{
+.firstContainer section h1,h2{
     margin: 0 auto;
 }
-.Container section img{
+.firstContainer section img{
     margin: 0 auto;
     height: 100px;
+
 }
+.secondContainer{
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content:left;
+}
+.secondContainer section{
+    border: 1px solid saddlebrown;
+    margin: 10px;
+    width: 100px;
+}
+.secondContainer h3{
+    border: 1px solid rgb(194, 179, 179);
+    margin: 0 auto;
+}
+
+  

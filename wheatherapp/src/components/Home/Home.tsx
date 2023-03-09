@@ -92,7 +92,7 @@ export default function Home (){
 
       <section className={style.CardInfo}>
          {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} weatherinfo={weatherinfo}/>
+         <Cardinfo infocity={infocity} weatherinfo={weatherinfo} forecast={forecast}/>
        }
        {error&&
          <h1>{error}</h1>
@@ -115,13 +115,6 @@ export default function Home (){
         </div> 
 
 
-
-        <section>
-          <h1>Hours</h1>
-          {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} weatherinfo={weatherinfo}/>
-       }
-        </section>
      
     </div>
  )

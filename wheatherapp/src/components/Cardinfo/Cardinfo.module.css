@@ -1,18 +1,77 @@
 .Container{
-    border: solid 1px black;
     display: flex;
-    flex-flow: column;
+    flex-flow:wrap;
+    justify-content: left;
     align-items: center;
-    width: auto;
+    background-color: rgb(58, 137, 206);
+    letter-spacing: 1px;
+}
+.Container h1{
+    font-size: 35px;
+    margin: 0;
+    display: inline-block;
+}
+.LocationContainer{
+    width: 100%;
+}
+.LocationContainer span{
+    font-size: 20px;
+    margin: 0;  
+}
+.LocationContainer i{
+    font-size: 20px;  
+    float:right;
+    margin-top: 15px;
 }
 .firstSection{
-    border: solid 1px red;
-    width: 40%;
+    background-color: rgb(124, 197, 202);
+     width: 100%;
+     height: auto;
     display: flex;
-    flex-flow: column;
+     justify-content: space-between;
     align-items: center;
 }
 .firstSection img{
     width: 100px;
     height: 100px;
+}
+.firstSection h1{
+    margin: 0;
+    width: fit-content;
+    display: inline-block;
+    font-size: 120px;
+    letter-spacing: -5px;
+    font-weight: 500;
+    text-shadow: 0 0 5px #000000;
+    color: #ffffff;
+}
+/* .wheatherInfo{
+    border: 1px solid;
+} */
+.wheatherInfo i{
+    font-style: normal;
+   font-size: 40px;
+   color: #fff;
+   text-shadow: 0 0 5px #000000;
+}
+.wheatherInfo img{
+    display:inline-block;
+    width: 50px;
+    height: 30px;
+
+}
+.wheatherInfo span{
+    display: flex;
+  font-size: 25px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+}
+.imginfo{
+    border: 1px solid;
+    float: right;
+}
+.imginfo img{
+   width: 200px;
+   height: 200px;
 }
