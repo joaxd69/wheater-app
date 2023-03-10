@@ -1,17 +1,32 @@
 .FirstSection{
     display: flex;
-
+   border: 1px solid gold;
 }
 .MapContainer{
 
-    width: 40%;    
+    width: 40%;  
+    border: 1px solid black;  
 }
 .CardInfo{
     width: 60%;
     height: 100%;
     background-color: aliceblue;
+    border: 1px solid rgb(255, 0, 0);
 }
 .ForecastContainer{
  margin-top: 20px;  
 
+}
+
+@media(max-width:850px){
+  .FirstSection{
+    display: block; 
+  }
+  .CardInfo{
+    width: auto;
+  }
+  .MapContainer{
+    width: auto;
+    height: 300px;
+  }
 }

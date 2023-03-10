@@ -31,9 +31,8 @@ export default function Map ({onMapclick,center}:props){
             lng: center.lng
           });
         }
-        console.log('me ejecuto')
         action()
-      },[])
+      },[center.lat,center.lng])
 
       const handleMapClick = (event:any) => {
         onMapclick(`${event.latLng.lat()},${event.latLng.lng()}`)

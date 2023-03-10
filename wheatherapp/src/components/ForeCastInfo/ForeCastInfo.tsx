@@ -53,7 +53,7 @@ export default function ForeCastInfo ({forecast}:props){
     actualselect&&(actualselect.style.background='rgb(174, 192, 211)');
      }
      action()
-   },[selected])
+   },[selected,lastselected])
 
  
     return(
