@@ -3,6 +3,7 @@
    justify-content: space-around;
    align-items: center;
    background-color: rgb(0, 0, 0);
+    height: 70px;
 }
 .Nav h1{
     font-weight: lighter;
@@ -11,12 +12,15 @@
     color: white;
 }
 .Nav button {
-    font-size: 30px;
+    font-size: 25px;
     height: fit-content;
     padding: 6px;
     background-color: gold;
+    cursor: pointer;
     color: rgb(0, 0, 0);
-
+}
+.Nav button:hover{
+    background-color: rgb(238, 238, 33);
 }
 @media (max-width:500px) {
     .Nav h1{

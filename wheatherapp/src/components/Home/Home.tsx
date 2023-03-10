@@ -48,7 +48,7 @@ export default function Home (){
           fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
          .then(response=>response.json())
          .then(data=>{
-     
+           document.title=`Wheater App-${data.location.name}`
            data.error?setError(data.error.message):setError('')
            setInfoCity(data.location);
            setWeatherInfo(data.current)
@@ -67,7 +67,7 @@ export default function Home (){
          .then(data=>{
           console.log(data)
            data.error?setError(data.error.message):setError('')
-
+           document.title=`Wheater App-${data.location.name}`
            setInfoCity(data.location);
            setForeCast(data.forecast.forecastday)
            setWeatherInfo(data.current)
@@ -85,27 +85,42 @@ export default function Home (){
        console.log(data)
         data.error?setError(data.error.message):setError('')
         setForeCast(data.forecast.forecastday)
+        document.title=`Wheater App-${data.location.name}`
         setInfoCity(data.location);
         setWeatherInfo(data.current)
         setActualSelected(data.forecast.forecastday[selected].hour)
       })
       .catch(error=>console.log(error))
     }
-   
+    const onChange =(e:any)=>{
+      setCity(e.target.value)
+      e.target.value.length<1&&navigator.geolocation.getCurrentPosition((position)=>{
+        const lat = position.coords.latitude
+        const long = position.coords.longitude
+        fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
+       .then(response=>response.json())
+       .then(data=>{
+         document.title=`Wheater App-${data.location.name}`
+         data.error?setError(data.error.message):setError('')
+         setInfoCity(data.location);
+         setWeatherInfo(data.current)
+         setForeCast(data.forecast.forecastday)
+         setCenterMap({lat,lng:long})           
+       })
+       .catch(error=>console.log(error))
+      })
+    }
     return(
     <div>
         <section className={style.searchSection}>
-        <input value={city} onChange={(e)=>{setCity(e.target.value)} }placeholder={'escribe una ubicacion'} />
+        <input value={city} onChange={onChange }placeholder={'escribe una ubicacion'} />
        <button onClick={onclick}> buscar</button>
         </section>
-       <div className={style.FirstSection}>
+       {!error&&<div className={style.FirstSection}>
 
       <section className={style.CardInfo}>
          {!error&&infocity.name&&
          <Cardinfo infocity={infocity} weatherinfo={weatherinfo} forecast={forecast}/>
-       }
-       {error&&
-         <h1>{error}</h1>
        }
       </section>
       
@@ -113,7 +128,7 @@ export default function Home (){
       <section className={style.MapContainer}>
                <Map onMapclick={onMapclick}  center={centermap}/>
       </section>
-         </div>
+         </div>}
     
        <div className={style.ForecastContainer}>
            {!error&& forecast.length&&
