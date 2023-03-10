@@ -10,6 +10,7 @@
     font-size: 35px;
     margin: 0;
     display: inline-block;
+    
 }
 .LocationContainer{
     width: 100%;
@@ -79,3 +80,32 @@
    height: 200px;
 }
 
+@media(max-width:500px){
+    .Container h1{
+        font-size: 25px;
+        margin: 0;
+        display: inline-block;
+        
+    }
+    .LocationContainer span{
+        font-size: 17px;
+          
+    }
+    .LocationContainer i{
+        font-size: 17px;
+    }
+    .firstSection h1{
+        font-size: 50px;
+    }
+    .wheatherInfo i{
+        font-size: 30px;
+    }
+    .wheatherInfo span{
+        font-size: 20px;
+    }
+    .imginfo img{
+        width: 140px;
+        height: 140px;
+     }
+     
+}
