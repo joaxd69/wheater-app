@@ -1,6 +1,7 @@
 .principalContainer{
     display: flex;
     flex-direction: column;
+  
 }
 .firstContainer{
 display: flex;
@@ -8,34 +9,44 @@ justify-content: space-around;
 
 }
 .firstContainer section{
-     background-color:rgb(135, 163, 187);
-     border: 1px solid ; 
-     height: 250px;
-    display:flex;
-    flex-flow: column;
-    justify-content: space-around;    
+     background-color:rgb(207, 220, 236);
+     height: auto;
+     width: 30%; 
+     cursor: pointer;
+}
+.firstContainer section:hover{
+    box-shadow: 5px 5px 5px 2px rgb(112, 117, 119);
 }
 .firstContainer section h1,h2{
-    margin: 0 auto;
+margin: 0;
+text-align: center;
+font-size: 30px;
 }
 .firstContainer section img{
+    display:block;
+    text-align: center;
     margin: 0 auto;
     height: 100px;
-
+    width: 100px;
+}.firstContainer section span{
+    font-size: 25px;
+    display: block;
+    text-align: center;
 }
 .secondContainer{
     display: flex;
     flex-wrap: wrap;
+    justify-content:flex-start;
+   
     
-    justify-content:left;
 }
 .secondContainer section{
-    border: 1px solid saddlebrown;
+    background-color:rgb(207, 220, 236);
     margin: 10px;
     width: 100px;
 }
 .secondContainer h3{
-    border: 1px solid rgb(194, 179, 179);
+    border-bottom: solid 1px rgb(145, 145, 145);
     margin: 0 auto;
 }
 

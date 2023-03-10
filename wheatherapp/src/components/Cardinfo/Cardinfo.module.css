@@ -26,11 +26,13 @@
 .firstSection{
     background-color: rgb(124, 197, 202);
      width: 100%;
-     height: auto;
     display: flex;
      justify-content: space-between;
     align-items: center;
+     padding-top: 10px;
+
 }
+
 .firstSection img{
     width: 100px;
     height: 100px;
@@ -66,9 +68,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: left;
+  margin-top: 8px;
 }
 .imginfo{
-    border: 1px solid;
+
     float: right;
 }
 .imginfo img{

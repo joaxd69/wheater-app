@@ -39,12 +39,12 @@ export default function Home (){
           fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
          .then(response=>response.json())
          .then(data=>{
-          console.log(data)
+     
            data.error?setError(data.error.message):setError('')
            setInfoCity(data.location);
            setWeatherInfo(data.current)
            setForeCast(data.forecast.forecastday)
-           console.log(data.forecast.forecastday ,'48')
+      
            setCenterMap({lat,lng:long})
          })
          .catch(error=>console.log(error))
@@ -52,6 +52,7 @@ export default function Home (){
       }
       actuallocation()
      },[])
+
      const onclick =()=>{
      city.length?fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${city}&days=5&aqi=no&alerts=no&lang=es`)
          .then(response=>response.json())
@@ -79,7 +80,7 @@ export default function Home (){
       })
       .catch(error=>console.log(error))
     }
-    console.log(forecast)
+
     return(
     <div>
         <input value={city} onChange={(e)=>{setCity(e.target.value)}} />
@@ -106,8 +107,6 @@ export default function Home (){
          </div>
     
        <div className={style.ForecastContainer}>
-           <h1>Forecast </h1>
-
            {!error&&infocity.name&&
          <ForeCastInfo forecast={forecast}/>
        }

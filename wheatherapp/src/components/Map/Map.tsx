@@ -1,5 +1,5 @@
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import style from './Map.module.css'
 
 interface props{
@@ -15,37 +15,60 @@ export default function Map ({onMapclick,center}:props){
 
     const [map, setMap] = useState<google.maps.Map | null>(null);
     
+
+    
     const containerStyle = {
-        height: '400px',
-        margin: '0 auto'
+        height: '100%',
+        
       };
       const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
+    
+       const [bol,setBol]=useState(false)
+      useEffect(()=>{
+        const action=()=>{
+          setMapPosition({
+            lat: center.lat,
+            lng: center.lng
+          });
+        }
+        console.log('me ejecuto')
+        action()
+      },[])
 
       const handleMapClick = (event:any) => {
         onMapclick(`${event.latLng.lat()},${event.latLng.lng()}`)
+
         setMapPosition({
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng()
-          });
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng()
+        });
+     
       };
 
       const options = {
         disableDefaultUI: true,
-        zoomControl: true
+        zoomControl: true,
       };
     if(!isLoaded){
         return <h1>cargando...</h1>
     }
 
-  
+ setTimeout(()=>{
+   setBol(true)
+ },3000)
  return(
     <div className={style.MapContainer}>
-    <GoogleMap  mapContainerStyle={containerStyle} 
-    center={center} zoom={12} onClick={handleMapClick}
-    options={options} onLoad={(map)=>setMap(map)}>  
+      <section>
+        
+       <GoogleMap  mapContainerStyle={containerStyle} 
+    center={center} zoom={14} onClick={handleMapClick}
+    options={options} onLoad={(map)=>setMap(map)}
+    
+    >  
+   {bol&&<Marker position={mapPosition}/>}
     </GoogleMap>
-    <Marker position={center} />
-    <Marker position={{ lat: mapPosition.lat, lng: mapPosition.lng }} />
+ 
+      </section>
     </div>
  )
 }

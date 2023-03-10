@@ -1,4 +1,10 @@
 .MapContainer{
- width: auto;
 
+ height: 100%;
+}
+.MapContainer section{
+    display: block;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
 }

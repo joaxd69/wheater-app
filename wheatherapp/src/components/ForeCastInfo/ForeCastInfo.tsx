@@ -41,20 +41,21 @@ export default function ForeCastInfo ({forecast}:props){
     const Today =new Date()
     var daynumber =Today.getDay()-1
     const [actualSelected,setActualSelected]=useState<arraydeobj[]>([])
-    const days=['Sunday','Monday','Tuesday','Wednesday','thursday','Friday','Saturday']
-    const [selected,setSelected]=useState('1')
-    const [lastselected,setLastSelected]=useState('1')
+    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    const [selected,setSelected]=useState('0')
+    const [lastselected,setLastSelected]=useState('0')
    useEffect(()=>{
      let actualselect=document.getElementById(selected)
      let last=document.getElementById(lastselected)
      const action=()=>{
-    last&&(last.style.backgroundColor='blue')
+    last&&(last.style.backgroundColor='rgb(207, 220, 236)')
     setLastSelected(selected)
-    actualselect&&(actualselect.style.background='yellow');
+    actualselect&&(actualselect.style.background='rgb(174, 192, 211)');
      }
      action()
    },[selected])
 
+ 
     return(
   <div className={style.principalContainer}>
      <div className={style.firstContainer}>
@@ -68,10 +69,11 @@ export default function ForeCastInfo ({forecast}:props){
               setSelected(key.toString())
               ;}}>
             
-                <h1>Date: {days[daynumber]}</h1>
-                <h2>max: {i.day?.maxtemp_c}</h2>
-                <h2>min: {i.day?.mintemp_c}</h2>
+                <h1> {days[daynumber]}</h1>
                 <img src={i.day?.condition.icon} alt="icon" />
+                <span>max: {i.day?.maxtemp_c&& Math.round(i.day?.maxtemp_c)} c°</span>
+                 <span>min: {i.day?.mintemp_c&& Math.round(i.day?.mintemp_c)} c°</span> 
+                
              </section>
              }
             )
@@ -81,7 +83,7 @@ export default function ForeCastInfo ({forecast}:props){
           {actualSelected.length&&
             actualSelected.map(i=>
               <section >
-                <h3>hs :{i.time?.split('').splice(-5)}</h3> <br />
+                <h3>Hs: {i.time?.split('').splice(-5)}</h3> <br />
                  <img src={i.condition?.icon}alt="" /> <br />
                  <span>{i.temp_c} c°</span><br />
                  <span>{i.condition?.text} c°</span>
