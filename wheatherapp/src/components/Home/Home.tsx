@@ -83,11 +83,14 @@ export default function Home (){
 
     return(
     <div>
+        <section className={style.searchSection}>
         <input value={city} onChange={(e)=>{setCity(e.target.value)}} />
        <button onClick={onclick}> buscar</button>
-       <button onClick={()=>console.log(infocity)}> ver info de la ciudad</button>
+        </section>
+  
+       {/* <button onClick={()=>console.log(infocity)}> ver info de la ciudad</button>
        <button onClick={()=>console.log(weatherinfo)}>ver clima</button>
-       <button onClick={()=>console.log(error)}>ver errores</button>
+       <button onClick={()=>console.log(error)}>ver errores</button> */}
 
        <div className={style.FirstSection}>
 

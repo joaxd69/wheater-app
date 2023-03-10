@@ -2,7 +2,7 @@
    display: flex;
    justify-content: space-around;
    align-items: center;
-   background-color: black;
+   background-color: rgb(0, 0, 0);
 }
 .Nav h1{
     font-weight: lighter;
@@ -17,4 +17,13 @@
     background-color: gold;
     color: rgb(0, 0, 0);
 
+}
+@media (max-width:500px) {
+    .Nav h1{
+       font-size: 25px;
+       letter-spacing: 1px;
+    }
+    .Nav button{
+       font-size: 17px;
+    }
 }
