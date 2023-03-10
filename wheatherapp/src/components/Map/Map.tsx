@@ -12,8 +12,9 @@ export default function Map ({onMapclick,center}:props){
         id: 'google-map-script',
         googleMapsApiKey:'AIzaSyBxRKT9oBJQNJ_ibqWi_Cwt97Z_WVLGkmg'
     })/// configuramos cuando es cargado el mapa
-
+// eslint-disable-next-line 
     const [map, setMap] = useState<google.maps.Map | null>(null);
+    
     
 
     

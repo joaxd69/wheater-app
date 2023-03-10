@@ -20,17 +20,26 @@ interface center {
   lat:number,
   lng:number
 }
-
+interface arraydeobj{
+  time?:string,
+  temp_c?:number,
+  temp_f?:number,
+  condition?:{
+    text:string,
+    icon:string,
+  }
+}
 
 export default function Home (){
  
-  
+  const [actualSelected,setActualSelected]=useState<arraydeobj[]>([])
      const [city,setCity]=useState('')
      const [infocity,setInfoCity]=useState<infoapi>({})
      const [forecast,setForeCast]=useState([])
      const [error,setError]=useState('')
      const [weatherinfo,setWeatherInfo]=useState<weather>({})
      const [centermap,setCenterMap]=useState <center>({lat:0,lng:0})
+     const [selected,setSelected]=useState('0')
       useEffect(()=>{
       const actuallocation=()=>{
         navigator.geolocation.getCurrentPosition((position)=>{
@@ -44,25 +53,26 @@ export default function Home (){
            setInfoCity(data.location);
            setWeatherInfo(data.current)
            setForeCast(data.forecast.forecastday)
-      
-           setCenterMap({lat,lng:long})
+           setCenterMap({lat,lng:long})           
          })
          .catch(error=>console.log(error))
         })
       }
       actuallocation()
      },[])
-
+    
      const onclick =()=>{
      city.length?fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${city}&days=5&aqi=no&alerts=no&lang=es`)
          .then(response=>response.json())
          .then(data=>{
           console.log(data)
            data.error?setError(data.error.message):setError('')
+
            setInfoCity(data.location);
            setForeCast(data.forecast.forecastday)
            setWeatherInfo(data.current)
            setCenterMap({lat:data.location.lat,lng:data.location.lon})
+           setActualSelected(data.forecast.forecastday[selected].hour)
          })
          .catch(error=>console.log(error))
          :setError('Escribe alguna ciudad')
@@ -77,21 +87,17 @@ export default function Home (){
         setForeCast(data.forecast.forecastday)
         setInfoCity(data.location);
         setWeatherInfo(data.current)
+        setActualSelected(data.forecast.forecastday[selected].hour)
       })
       .catch(error=>console.log(error))
     }
-
+   
     return(
     <div>
         <section className={style.searchSection}>
-        <input value={city} onChange={(e)=>{setCity(e.target.value)}} />
+        <input value={city} onChange={(e)=>{setCity(e.target.value)} }placeholder={'escribe una ubicacion'} />
        <button onClick={onclick}> buscar</button>
         </section>
-  
-       {/* <button onClick={()=>console.log(infocity)}> ver info de la ciudad</button>
-       <button onClick={()=>console.log(weatherinfo)}>ver clima</button>
-       <button onClick={()=>console.log(error)}>ver errores</button> */}
-
        <div className={style.FirstSection}>
 
       <section className={style.CardInfo}>
@@ -110,8 +116,10 @@ export default function Home (){
          </div>
     
        <div className={style.ForecastContainer}>
-           {!error&&infocity.name&&
-         <ForeCastInfo forecast={forecast}/>
+           {!error&& forecast.length&&
+         <ForeCastInfo forecast={forecast} actualSelected={actualSelected} selected={selected} 
+         setSelected={setSelected}
+         setActualselected={setActualSelected}/>
        }
             
         </div> 

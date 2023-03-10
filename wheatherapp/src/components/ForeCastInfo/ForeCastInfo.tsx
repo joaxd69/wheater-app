@@ -25,7 +25,11 @@ interface props{
             mintemp_f?:number,
         },
         hour:Array<hour>
-    }>
+    }>,
+    actualSelected:Array<arraydeobj>,
+    setActualselected:Function,
+    selected:string,
+    setSelected:Function
 }
 interface arraydeobj{
   time?:string,
@@ -37,12 +41,14 @@ interface arraydeobj{
   }
 }
 
-export default function ForeCastInfo ({forecast}:props){
+
+export default function ForeCastInfo ({forecast,actualSelected,setActualselected,selected,setSelected}:props){
     const Today =new Date()
     var daynumber =Today.getDay()-1
-    const [actualSelected,setActualSelected]=useState<arraydeobj[]>([])
+
     const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-    const [selected,setSelected]=useState('0')
+    const daysES=['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']
+    
     const [lastselected,setLastSelected]=useState('0')
    useEffect(()=>{
      let actualselect=document.getElementById(selected)
@@ -55,7 +61,6 @@ export default function ForeCastInfo ({forecast}:props){
      action()
    },[selected,lastselected])
 
- 
     return(
   <div className={style.principalContainer}>
      <div className={style.firstContainer}>
@@ -63,13 +68,13 @@ export default function ForeCastInfo ({forecast}:props){
 
           forecast.map((i,key)=>{
           daynumber=daynumber===6?0:daynumber=daynumber+1
-        
+            
             return <section key={key}  id={key.toString()}  onClick={(e)=>{
-              setActualSelected(i.hour)
+              setActualselected(i.hour)
               setSelected(key.toString())
               ;}}>
             
-                <h1> {days[daynumber]}</h1>
+                <h1> {daysES[daynumber]}</h1>
                 <img src={i.day?.condition.icon} alt="icon" />
                 <span>max: {i.day?.maxtemp_c&& Math.round(i.day?.maxtemp_c)} c°</span>
                  <span>min: {i.day?.mintemp_c&& Math.round(i.day?.mintemp_c)} c°</span> 
@@ -81,8 +86,8 @@ export default function ForeCastInfo ({forecast}:props){
        </div>
        <div className={style.secondContainer}>
           {actualSelected.length&&
-            actualSelected.map(i=>
-              <section >
+            actualSelected.map((i,key)=>
+              <section key={key} >
                 <h3>Hs: {i.time?.split('').splice(-5)}</h3> <br />
                  <img src={i.condition?.icon}alt="" /> <br />
                  <span>{i.temp_c} c°</span><br />
