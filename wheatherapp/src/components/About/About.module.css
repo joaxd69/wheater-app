@@ -46,3 +46,20 @@ flex-direction: column;
   width: 50px;
   
 }
+
+@media (max-width:600px) {
+    .AboutApp{
+        width: 80%;
+    }
+    .Aboutme{
+        width: 80%;
+    }
+}
+@media (max-width:400px) {
+    .AboutApp{
+        width: auto;
+    }
+    .Aboutme{
+        width: auto;
+    }
+}
