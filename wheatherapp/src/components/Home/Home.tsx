@@ -117,7 +117,7 @@ export default function Home ({spanish,celcius}:props){
     return(
     <div>
         <section className={style.searchSection}>
-        <input value={city} onChange={onChange }placeholder={'escribe una ubicacion'} />
+        <input value={city} onChange={onChange }placeholder={spanish?'Escribe una ubicacion':'Enter a location'} />
        <button onClick={onclick}>{spanish?'buscar':'search'} </button>
         </section>
        {!error&&<div className={style.FirstSection}>
