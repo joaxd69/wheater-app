@@ -87,7 +87,7 @@ export default function ForeCastInfo ({forecast,actualSelected,setActualselected
          }
        </div>
        <div className={style.secondContainer}>
-          {actualSelected.length&&
+          {actualSelected&&
             actualSelected.map((i,key)=>
               <section key={key} >
                 <h3>Hs: {i.time?.split('').splice(-5)}</h3> <br />
