@@ -3,6 +3,7 @@ import Home from './components/Home/Home';
 import Nav from './components/Nav/Nav';
 import {Route,Routes} from 'react-router-dom'
 import {useState} from 'react'
+import About from './components/About/About';
 function App() {
   const [celcius,setCelcius]=useState(true)
   const [spanish,setSpanish]=useState(true)
@@ -24,6 +25,7 @@ function App() {
      
       <Routes>
         <Route path='/'element={<Home  spanish={spanish} celcius={celcius}/>}/>
+        <Route path='/about' element={<About spanish={spanish}/>}/>
       </Routes>
      
        

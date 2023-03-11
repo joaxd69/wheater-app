@@ -1,0 +1,43 @@
+.FirstContainer{
+    background-color:rgb(207, 220, 236);
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+.AboutApp h1{
+display: block;
+width: fit-content;
+ margin: 0 auto;
+}
+.AboutApp p{
+    width: 80%;
+    margin:0 auto;
+    font-size: 18px;
+}
+.Aboutme{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
+    margin:0 auto;
+    margin-top: 30px;
+}
+.Aboutme h1{
+    display: block;
+width: fit-content;
+ margin: 0 auto;
+}
+.Aboutme span{
+    font-size: 18px;
+}
+.Aboutme section{
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+
+.Aboutme img{
+  width: 50px;
+  
+}
