@@ -93,7 +93,7 @@ export default function ForeCastInfo ({forecast,actualSelected,setActualselected
                 <h3>Hs: {i.time?.split('').splice(-5)}</h3> <br />
                  <img src={i.condition?.icon}alt="" /> <br />
                  <span>{i.temp_c} c°</span><br />
-                 <span>{i.condition?.text} c°</span>
+                 <span>{i.condition?.text}</span>
               </section>
             )
           }
