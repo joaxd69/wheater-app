@@ -1,7 +1,12 @@
 .FirstContainer{
     background-color:rgb(207, 220, 236);
+    display: grid;
+    width: fit-content;
+    margin: 0 auto;
+}
+.AboutApp{
+    background-color:rgb(203, 238, 240);
     width: 50%;
-    display: block;
     margin: 0 auto;
 }
 .AboutApp h1{
@@ -10,33 +15,33 @@ width: fit-content;
  margin: 0 auto;
 }
 .AboutApp p{
-    width: 80%;
     margin:0 auto;
     font-size: 18px;
 }
 .Aboutme{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 80%;
-    margin:0 auto;
-    margin-top: 30px;
+    background-color:rgb(203, 238, 240);
+    width: 50%;
+    margin: 0 auto;
+   
 }
+
 .Aboutme h1{
     display: block;
 width: fit-content;
  margin: 0 auto;
 }
+
+
+.Aboutme section{
+display: flex;
+flex-direction: column;
+} 
 .Aboutme span{
     font-size: 18px;
 }
-.Aboutme section{
-display: flex;
-align-items: center;
-justify-content: space-between;
-
+.Aboutme a{
+    word-wrap: break-word;
 }
-
 .Aboutme img{
   width: 50px;
   
