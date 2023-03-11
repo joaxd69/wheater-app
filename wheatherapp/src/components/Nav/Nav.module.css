@@ -23,9 +23,14 @@
     background-color: rgb(238, 238, 33);
 }
 @media (max-width:500px) {
+    .Nav{
+        display: flex;
+        
+    }
     .Nav h1{
        font-size: 25px;
        letter-spacing: 1px;
+     
     }
     .Nav button{
        font-size: 17px;

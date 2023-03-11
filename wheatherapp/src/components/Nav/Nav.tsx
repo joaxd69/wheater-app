@@ -5,14 +5,14 @@ interface props{
   setSpanish:Function
 }
 export default function Nav({spanish,setSpanish}:props){
-    const changeLanguage=()=>{
-      spanish?setSpanish(false):setSpanish(true)
+    // const changeLanguage=()=>{
+    //   spanish?setSpanish(false):setSpanish(true)
     
 
-    }
+    // }
     return (
         <div className={style.Nav}>
-            <button onClick={changeLanguage}>{spanish?'English':'Español'}</button>
+            
             <Link to={'/'}>
             <button>Home</button>
             </Link>
