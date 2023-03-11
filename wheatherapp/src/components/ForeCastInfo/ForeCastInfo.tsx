@@ -29,7 +29,8 @@ interface props{
     actualSelected:Array<arraydeobj>,
     setActualselected:Function,
     selected:string,
-    setSelected:Function
+    setSelected:Function,
+    spanish:boolean
 }
 interface arraydeobj{
   time?:string,
@@ -42,7 +43,8 @@ interface arraydeobj{
 }
 
 
-export default function ForeCastInfo ({forecast,actualSelected,setActualselected,selected,setSelected}:props){
+export default function ForeCastInfo ({forecast,actualSelected,setActualselected,
+                                       selected,setSelected,spanish}:props){
     const Today =new Date()
     var daynumber =Today.getDay()-1
 
@@ -74,7 +76,7 @@ export default function ForeCastInfo ({forecast,actualSelected,setActualselected
               setSelected(key.toString())
               ;}}>
             
-                <h1> {daysES[daynumber]}</h1>
+                <h1> { spanish?daysES[daynumber]:days[daynumber]}</h1>
                 <img src={i.day?.condition.icon} alt="icon" />
                 <span>max: {i.day?.maxtemp_c&& Math.round(i.day?.maxtemp_c)} c°</span>
                  <span>min: {i.day?.mintemp_c&& Math.round(i.day?.mintemp_c)} c°</span> 

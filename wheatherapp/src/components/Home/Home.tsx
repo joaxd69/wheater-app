@@ -29,8 +29,12 @@ interface arraydeobj{
     icon:string,
   }
 }
+interface props{
+  spanish:boolean,
+  celcius:boolean
+}
 
-export default function Home (){
+export default function Home ({spanish,celcius}:props){
  
   const [actualSelected,setActualSelected]=useState<arraydeobj[]>([])
      const [city,setCity]=useState('')
@@ -45,7 +49,7 @@ export default function Home (){
         navigator.geolocation.getCurrentPosition((position)=>{
           const lat = position.coords.latitude
           const long = position.coords.longitude
-          fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
+          fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=${spanish?'es':'en'}&days=5`)
          .then(response=>response.json())
          .then(data=>{
            document.title=`Wheater App-${data.location.name}`
@@ -59,10 +63,10 @@ export default function Home (){
         })
       }
       actuallocation()
-     },[])
+     },[spanish])
     
      const onclick =()=>{
-     city.length?fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${city}&days=5&aqi=no&alerts=no&lang=es`)
+     city.length?fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${city}&days=5&aqi=no&alerts=no&lang=${spanish?'es':'en'}`)
          .then(response=>response.json())
          .then(data=>{
           console.log(data)
@@ -79,7 +83,7 @@ export default function Home (){
      }
   
     const onMapclick=(coords:string)=>{
-     fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${coords}&days=5&aqi=no&alerts=no&lang=es`)
+     fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${coords}&days=5&aqi=no&alerts=no&lang=${spanish?'es':'en'}`)
       .then(response=>response.json())
       .then(data=>{
        console.log(data)
@@ -97,7 +101,7 @@ export default function Home (){
       e.target.value.length<1&&navigator.geolocation.getCurrentPosition((position)=>{
         const lat = position.coords.latitude
         const long = position.coords.longitude
-        fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=es&days=5`)
+        fetch(`https://api.weatherapi.com/v1/forecast.json?key=e019ca05994d40b1a2c32420231301&q=${lat},${long}&lang=${spanish?'es':'en'}&days=5`)
        .then(response=>response.json())
        .then(data=>{
          document.title=`Wheater App-${data.location.name}`
@@ -114,13 +118,13 @@ export default function Home (){
     <div>
         <section className={style.searchSection}>
         <input value={city} onChange={onChange }placeholder={'escribe una ubicacion'} />
-       <button onClick={onclick}> buscar</button>
+       <button onClick={onclick}>{spanish?'buscar':'search'} </button>
         </section>
        {!error&&<div className={style.FirstSection}>
 
       <section className={style.CardInfo}>
          {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} weatherinfo={weatherinfo} forecast={forecast}/>
+         <Cardinfo infocity={infocity} spanish={spanish} weatherinfo={weatherinfo} forecast={forecast}/>
        }
       </section>
       
@@ -132,7 +136,7 @@ export default function Home (){
     
        <div className={style.ForecastContainer}>
            {!error&& forecast.length&&
-         <ForeCastInfo forecast={forecast} actualSelected={actualSelected} selected={selected} 
+         <ForeCastInfo forecast={forecast} spanish={spanish} actualSelected={actualSelected} selected={selected} 
          setSelected={setSelected}
          setActualselected={setActualSelected}/>
        }

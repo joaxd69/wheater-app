@@ -27,10 +27,11 @@ forecast:Array<{
        maxtemp_f?:number,
        mintemp_f?:number,
    }
-}>
+}>,
+spanish:boolean
 }
 
-export default function Cardinfo({infocity,weatherinfo,forecast}:props){
+export default function Cardinfo({infocity,weatherinfo,forecast,spanish}:props){
    const am_or_pm=(time:any)=>{
     let reduce=time.split('').splice(-5).join('')
    return parseInt(reduce.split('').splice(0,2).join(''))>12?
@@ -55,8 +56,8 @@ export default function Cardinfo({infocity,weatherinfo,forecast}:props){
                      <span>Max:{max}°</span>
                       <span>Min:{min}°</span>
                    </section>
-                   <span> Vientos de {weatherinfo.wind_kph} kph <img src={icon1} alt="" width={5} height={5} />  </span><br />
-                  <span>Indice UV: {weatherinfo.uv}</span> 
+                   <span> {spanish?'Vientos':'Winds'}: {weatherinfo.wind_kph} kph <img src={icon1} alt="" width={5} height={5} />  </span><br />
+                  <span>{spanish?'Indice UV':'UV index'}: {weatherinfo.uv}</span> 
                 </article>
                 <article className={style.imginfo}>
                   <img src={weatherinfo.condition?.icon} alt="" /> <br />
