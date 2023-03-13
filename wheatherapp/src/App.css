@@ -7,6 +7,23 @@
   margin-left:10px;
   background-color: azure;
 }
+.LanguageSection{
+  background-color: rgb(95, 147, 192);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.CF{
+  background-color: azure;
+  padding: 7px;
+  border: 1px solid;
+  font-size: 15px;
+  font-style: italic;
+  cursor: pointer;
+}
+.CF:hover{
+  background-color: rgb(233, 227, 227);
+}
 @media (max-width:500px) {
    .LanguageSection{
     text-align: center;

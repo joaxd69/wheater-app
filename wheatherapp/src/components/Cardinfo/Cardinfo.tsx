@@ -9,6 +9,7 @@ interface props{
 };
  weatherinfo:{
   temp_c?:number,
+  temp_f?:number,
   uv?:number,
   wind_kph?:string,
   localtime?:string,
@@ -28,17 +29,21 @@ forecast:Array<{
        mintemp_f?:number,
    }
 }>,
-spanish:boolean
+spanish:boolean,
+celcius:boolean
 }
 
-export default function Cardinfo({infocity,weatherinfo,forecast,spanish}:props){
+export default function Cardinfo({infocity,weatherinfo,forecast,spanish,celcius}:props){
    const am_or_pm=(time:any)=>{
     let reduce=time.split('').splice(-5).join('')
    return parseInt(reduce.split('').splice(0,2).join(''))>12?
           `${reduce} pm`:`${reduce} am`
    }
-   let max =forecast[0].day?.maxtemp_c && Math.ceil(forecast[0].day?.maxtemp_c)
-   let min =forecast[0].day?.mintemp_c && Math.floor(forecast[0].day?.mintemp_c)
+   const currentwheather=celcius?`${weatherinfo.temp_c} c°`: `${weatherinfo.temp_f} f °`
+   let max =`${forecast[0].day?.maxtemp_c && Math.ceil(forecast[0].day?.maxtemp_c)} c°`
+   let min =`${forecast[0].day?.mintemp_c && Math.floor(forecast[0].day?.mintemp_c)} c°`
+   let maxf =`${forecast[0].day?.maxtemp_f && Math.ceil(forecast[0].day?.maxtemp_f)} f°`
+   let minf =`${forecast[0].day?.mintemp_f && Math.ceil(forecast[0].day?.mintemp_f)} f°`
    return (
     
         <div className={style.Container}>
@@ -50,11 +55,11 @@ export default function Cardinfo({infocity,weatherinfo,forecast,spanish}:props){
              <section className={style.firstSection}>
 
                 <article className={style.wheatherInfo}>
-                   <h1>{weatherinfo.temp_c}°</h1>  
+                   <h1>{currentwheather}</h1>  
                    <i>{weatherinfo.condition?.text}</i> 
                    <section className={style.MaxMin}>
-                     <span>Max:{max}°</span>
-                      <span>Min:{min}°</span>
+                     <span>Max:{celcius?max:maxf}</span>
+                      <span>Min:{celcius?min:minf}</span>
                    </section>
                    <span> {spanish?'Vientos':'Winds'}: {weatherinfo.wind_kph} kph <img src={icon1} alt="" width={5} height={5} />  </span><br />
                   <span>{spanish?'Indice UV':'UV index'}: {weatherinfo.uv}</span> 

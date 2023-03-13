@@ -124,7 +124,10 @@ export default function Home ({spanish,celcius}:props){
 
       <section className={style.CardInfo}>
          {!error&&infocity.name&&
-         <Cardinfo infocity={infocity} spanish={spanish} weatherinfo={weatherinfo} forecast={forecast}/>
+         <Cardinfo infocity={infocity} spanish={spanish}
+          weatherinfo={weatherinfo} forecast={forecast}
+          celcius={celcius}
+          />
        }
       </section>
       
@@ -136,8 +139,9 @@ export default function Home ({spanish,celcius}:props){
     
        <div className={style.ForecastContainer}>
            {!error&& forecast.length&&
-         <ForeCastInfo forecast={forecast} spanish={spanish} actualSelected={actualSelected} selected={selected} 
-         setSelected={setSelected}
+         <ForeCastInfo forecast={forecast} spanish={spanish} 
+         actualSelected={actualSelected} selected={selected} 
+         setSelected={setSelected} celcius={celcius}
          setActualselected={setActualSelected}/>
        }
             

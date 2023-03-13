@@ -9,20 +9,26 @@ function App() {
   const [spanish,setSpanish]=useState(true)
   const changeLanguage=(e:any)=>{
     e.target.value==='es'?setSpanish(true):setSpanish(false)
-  
-
+  }
+  const onClick=(e:any)=>{
+    e.preventDefault();
+    celcius?setCelcius(false):setCelcius(true)
   }
   return (
     <div className="App">
       <Nav spanish={spanish} setSpanish={setSpanish}/>
       <section className='LanguageSection'>
-         <span>{spanish?'Cambiar idioma :':'Change Language :'}</span>
-         <select onChange={changeLanguage}>
+        <section>
+           <span>{spanish?'Cambiar idioma :':'Change Language :'}</span>
+        <select onChange={changeLanguage}>
         <option value="es">{spanish?'Español':'Spanish'}</option>
         <option value="en">{!spanish?'English':'Ingles'}</option>
       </select>
+        </section>
+       
+      <button className='CF' onClick={onClick} >{celcius?'F°':'C°'}</button>
       </section>
-     
+
       <Routes>
         <Route path='/'element={<Home  spanish={spanish} celcius={celcius}/>}/>
         <Route path='/about' element={<About spanish={spanish}/>}/>

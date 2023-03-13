@@ -30,7 +30,8 @@ interface props{
     setActualselected:Function,
     selected:string,
     setSelected:Function,
-    spanish:boolean
+    spanish:boolean,
+    celcius:boolean
 }
 interface arraydeobj{
   time?:string,
@@ -44,7 +45,7 @@ interface arraydeobj{
 
 
 export default function ForeCastInfo ({forecast,actualSelected,setActualselected,
-                                       selected,setSelected,spanish}:props){
+                                       selected,setSelected,spanish,celcius}:props){
     const Today =new Date()
     var daynumber =Today.getDay()-1
 
@@ -62,6 +63,11 @@ export default function ForeCastInfo ({forecast,actualSelected,setActualselected
      }
      action()
    },[selected,lastselected])
+   function aux (i:any){
+     return celcius? `${i.day?.maxtemp_c&& Math.round(i.day?.maxtemp_c)} c °`:
+       `${i.day?.maxtemp_f&& Math.round(i.day?.maxtemp_f)} f °`
+
+   }
 
     return(
   <div className={style.principalContainer}>
@@ -78,8 +84,9 @@ export default function ForeCastInfo ({forecast,actualSelected,setActualselected
             
                 <h1> { spanish?daysES[daynumber]:days[daynumber]}</h1>
                 <img src={i.day?.condition.icon} alt="icon" />
-                <span>max: {i.day?.maxtemp_c&& Math.round(i.day?.maxtemp_c)} c°</span>
-                 <span>min: {i.day?.mintemp_c&& Math.round(i.day?.mintemp_c)} c°</span> 
+                <span>max:  {aux(i)}</span>
+                 <span>min: {aux(i)}</span> 
+               
                 
              </section>
              }
@@ -92,7 +99,7 @@ export default function ForeCastInfo ({forecast,actualSelected,setActualselected
               <section key={key} >
                 <h3>Hs: {i.time?.split('').splice(-5)}</h3> <br />
                  <img src={i.condition?.icon}alt="" /> <br />
-                 <span>{i.temp_c} c°</span><br />
+                 <span>{ celcius?`${i.temp_c} c`:`${i.temp_f} f`} °</span><br />
                  <span>{i.condition?.text}</span>
               </section>
             )
